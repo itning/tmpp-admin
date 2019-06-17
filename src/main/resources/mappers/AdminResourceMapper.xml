@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.itning.tmpp.tmppadmin.mapper.AdminResourceMapper">
+    <resultMap id="BaseResultMap" type="top.itning.tmpp.tmppadmin.pojo.AdminResource">
+        <constructor>
+            <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="method" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="gmt_create" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="gmt_modified" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+            id,
+            url,
+            method,
+            gmt_create,
+            gmt_modified
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from admin_resource
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from admin_resource
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="top.itning.tmpp.tmppadmin.pojo.AdminResource">
+        insert into admin_resource (id, url, method,
+                                    gmt_create, gmt_modified)
+        values (#{id,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR},
+                #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="top.itning.tmpp.tmppadmin.pojo.AdminResource">
+        insert into admin_resource
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="method != null">
+                method,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="method != null">
+                #{method,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="top.itning.tmpp.tmppadmin.pojo.AdminResource">
+        update admin_resource
+        <set>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="method != null">
+                method = #{method,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="top.itning.tmpp.tmppadmin.pojo.AdminResource">
+        update admin_resource
+        set url          = #{url,jdbcType=VARCHAR},
+            method       = #{method,jdbcType=VARCHAR},
+            gmt_create   = #{gmtCreate,jdbcType=TIMESTAMP},
+            gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id, url, method, gmt_create, gmt_modified
+        from admin_resource
+    </select>
+</mapper>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.itning.tmpp.tmppadmin.mapper.AdminUserRoleMapper">
+    <resultMap id="BaseResultMap" type="top.itning.tmpp.tmppadmin.pojo.AdminUserRole">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="gmt_create" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="gmt_modified" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+            id,
+            name,
+            gmt_create,
+            gmt_modified,
+            type
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from admin_user_role
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from admin_user_role
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="top.itning.tmpp.tmppadmin.pojo.AdminUserRole">
+        insert into admin_user_role (id, name, gmt_create,
+                                     gmt_modified, type)
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
+                #{gmtModified,jdbcType=TIMESTAMP}, #{type,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="top.itning.tmpp.tmppadmin.pojo.AdminUserRole">
+        insert into admin_user_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="top.itning.tmpp.tmppadmin.pojo.AdminUserRole">
+        update admin_user_role
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="top.itning.tmpp.tmppadmin.pojo.AdminUserRole">
+        update admin_user_role
+        set name         = #{name,jdbcType=VARCHAR},
+            gmt_create   = #{gmtCreate,jdbcType=TIMESTAMP},
+            gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            type         = #{type,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByResourceId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT admin_user_role.id,
+               admin_user_role.`name`,
+               admin_user_role.type,
+               admin_user_role.gmt_create,
+               admin_user_role.gmt_modified
+        FROM admin_user_role,
+             admin_user_role_resource
+        WHERE admin_user_role_resource.resource_id = #{resourceId}
+          AND admin_user_role.id = admin_user_role_resource.user_role_id;
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from admin_user_role
+    </select>
+    <select id="selectNameByType" resultType="java.lang.String">
+        select name
+        from admin_user_role
+        where type = #{type,jdbcType=VARCHAR}
+    </select>
+</mapper>
