@@ -12,20 +12,28 @@
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+        .mdui-card {
+            margin-bottom: 8px;
+        }
+    </style>
 </head>
 <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink">
 <header th:replace="common :: header"></header>
 <nav th:replace="common :: nav"></nav>
 <section class="mdui-container">
-    <form th:action="@{/upLevel}" method="post">
-        <input type="hidden" name="id" th:value="${level.id}">
+    <form th:action="@{/addDepartment}" method="post">
         <div class="mdui-textfield mdui-textfield-floating-label">
-            <label class="mdui-textfield-label">层次</label>
-            <input name="educationalLevel" class="mdui-textfield-input" type="text" th:value="${level.educationalLevel}"/>
+            <label class="mdui-textfield-label">授课部门</label>
+            <input name="name" class="mdui-textfield-input" type="text"/>
         </div>
         <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
     </form>
 </section>
 <script th:src="@{/config/mdui/js/mdui.min.js}"></script>
+<script th:inline="javascript">
+    'use strict';
+
+</script>
 </body>
 </html>

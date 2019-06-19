@@ -53,7 +53,7 @@ public class LevelController {
      * 添加层次
      *
      * @param educationalLevel 层次
-     * @return addLevel.html
+     * @return level.html
      */
     @PostMapping("/addLevel")
     public String handleAddLevel(@RequestParam String educationalLevel) {
@@ -84,7 +84,7 @@ public class LevelController {
      *
      * @param id               层次ID
      * @param educationalLevel 层次
-     * @return upLevel.html
+     * @return level.html
      */
     @PostMapping("/upLevel")
     public String handleUpLevel(@RequestParam String id, @RequestParam String educationalLevel) {
@@ -96,7 +96,7 @@ public class LevelController {
      * 删除层次
      *
      * @param id 层次ID
-     * @return upLevel.html
+     * @return level.html
      */
     @GetMapping("/delLevel")
     public String delLevel(@RequestParam String id) {

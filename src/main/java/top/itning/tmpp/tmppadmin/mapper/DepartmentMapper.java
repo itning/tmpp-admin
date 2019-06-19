@@ -2,6 +2,8 @@ package top.itning.tmpp.tmppadmin.mapper;
 
 import top.itning.tmpp.tmppadmin.pojo.Department;
 
+import java.util.List;
+
 public interface DepartmentMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,6 @@ public interface DepartmentMapper {
     int updateByPrimaryKeySelective(Department record);
 
     int updateByPrimaryKey(Department record);
+
+    List<Department> selectAll();
 }
