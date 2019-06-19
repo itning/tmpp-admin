@@ -13,4 +13,4 @@
 [![HitCount](http://hits.dwyl.io/itning/tmpp-admin.svg)](http://hits.dwyl.io/itning/tmpp-admin)
 [![language](https://img.shields.io/badge/language-JAVA-green.svg)](https://github.com/itning/tmpp-admin)
 
-![](https://raw.githubusercontent.com/itning/tmpp-admin/master/pic/login.png)
+![](https://raw.githubusercontent.com/itning/tmpp-admin/master/pic/logoin.png)
