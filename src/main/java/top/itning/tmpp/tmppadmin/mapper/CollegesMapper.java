@@ -2,6 +2,8 @@ package top.itning.tmpp.tmppadmin.mapper;
 
 import top.itning.tmpp.tmppadmin.pojo.Colleges;
 
+import java.util.List;
+
 public interface CollegesMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,6 @@ public interface CollegesMapper {
     int updateByPrimaryKeySelective(Colleges record);
 
     int updateByPrimaryKey(Colleges record);
+
+    List<Colleges> selectAll();
 }
