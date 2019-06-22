@@ -12,22 +12,96 @@
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-        .mdui-card {
-            margin-bottom: 8px;
-        }
-    </style>
+    <script th:src="@{/config/echarts/echarts.min.js}"></script>
 </head>
 <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink">
 <header th:replace="common :: header"></header>
 <nav th:replace="common :: nav"></nav>
 <section class="mdui-container">
-
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="cpu" style="width: 600px;height:400px;"></div>
+    <div id="memory" style="width: 600px;height:400px;"></div>
 </section>
 <script th:src="@{/config/mdui/js/mdui.min.js}"></script>
 <script th:inline="javascript">
     'use strict';
+    const $$ = mdui.JQ;
+    let memoryTotal = 0;
 
+    $$(function () {
+        $$.ajax({
+            method: 'GET',
+            url: './system/memoryTotal',
+            success: function (data) {
+                memoryTotal = data;
+            }
+        });
+
+        // 基于准备好的dom，初始化echarts实例
+        let cpuChart = echarts.init(document.getElementById('cpu'));
+        let memoryChart = echarts.init(document.getElementById('memory'));
+        // 指定图表的配置项和数据
+        let cpuOption = {
+            tooltip: {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            series: [
+                {
+                    name: 'CPU状态',
+                    type: 'gauge',
+                    detail: {formatter: '{value}%'},
+                    data: [{value: 0, name: 'CPU使用率'}]
+                }
+            ]
+        };
+        let memoryOption = {
+            tooltip: {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            series: [
+                {
+                    name: '内存状态',
+                    type: 'gauge',
+                    detail: {formatter: '{value}%'},
+                    data: [{value: 0, name: '内存使用率'}]
+                }
+            ]
+        };
+
+        cpuChart.setOption(cpuOption);
+        memoryChart.setOption(memoryOption);
+
+        setInterval(function () {
+            getSystemCpuLoad(function (data) {
+                cpuOption.series[0].data[0].value = data;
+                cpuChart.setOption(cpuOption, true);
+            });
+            getMemoryAvailable(function (data) {
+                memoryOption.series[0].data[0].value = (100 - (data / memoryTotal) * 100).toFixed(2);
+                memoryChart.setOption(memoryOption, true);
+            })
+        }, 2000);
+    });
+
+    function getSystemCpuLoad(fn) {
+        $$.ajax({
+            method: 'GET',
+            url: './system/systemCpuLoad',
+            success: function (data) {
+                fn(data);
+            }
+        });
+    }
+
+    function getMemoryAvailable(fn) {
+        $$.ajax({
+            method: 'GET',
+            url: './system/memoryAvailable',
+            success: function (data) {
+                fn(data);
+            }
+        });
+    }
 </script>
 </body>
 </html>
