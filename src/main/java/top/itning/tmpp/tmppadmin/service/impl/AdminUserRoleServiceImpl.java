@@ -34,6 +34,10 @@ public class AdminUserRoleServiceImpl implements AdminUserRoleService {
             adminUserRoleMapper.insert(new AdminUserRole(3, "办公室主任", date, date, "O"));
         } catch (Exception ignore) {
         }
+        try {
+            adminUserRoleMapper.insert(new AdminUserRole(4, "教师", date, date, "T"));
+        } catch (Exception ignore) {
+        }
     }
 
     @Override
