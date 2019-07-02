@@ -22,11 +22,30 @@
             <label class="mdui-textfield-label">URL</label>
             <input name="url" class="mdui-textfield-input" type="text"/>
         </div>
-        <div class="mdui-textfield mdui-textfield-floating-label">
-            <label class="mdui-textfield-label">方法</label>
-            <input name="method" class="mdui-textfield-input" type="text"/>
+        <div style="margin: 12px 0">
+            请求方法：
+            <label class="mdui-radio" style="margin-right: 12px">
+                <input type="radio" name="method" value="get" checked/>
+                <i class="mdui-radio-icon"></i>
+                GET
+            </label>
+            <label class="mdui-radio" style="margin-right: 12px">
+                <input type="radio" name="method" value="post"/>
+                <i class="mdui-radio-icon"></i>
+                POST
+            </label>
+            <label class="mdui-radio" style="margin-right: 12px">
+                <input type="radio" name="method" value="patch"/>
+                <i class="mdui-radio-icon"></i>
+                PATCH
+            </label>
+            <label class="mdui-radio" style="margin-right: 12px">
+                <input type="radio" name="method" value="delete"/>
+                <i class="mdui-radio-icon"></i>
+                DELETE
+            </label>
         </div>
-        <label th:each="adminUserRole : ${allAdminUserRoleList}" class="mdui-checkbox" style="margin-right: 12px">
+        <label th:each="adminUserRole : ${allAdminUserRoleList}" class="mdui-checkbox" style="margin:0 12px 12px 0">
             <input name="roles" type="checkbox" th:value="${adminUserRole.id}"/>
             <i class="mdui-checkbox-icon"></i>
             <span th:text="${adminUserRole.name}"></span>
