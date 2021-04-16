@@ -10,7 +10,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/itning/tmpp-admin.svg)](https://github.com/itning/tmpp-admin/commits)
 [![GitHub release](https://img.shields.io/github/release/itning/tmpp-admin.svg)](https://github.com/itning/tmpp-admin/releases)
 [![GitHub repo size in bytes](https://img.shields.io/github/repo-size/itning/tmpp-admin.svg)](https://github.com/itning/tmpp-admin)
-[![HitCount](http://hits.dwyl.io/itning/tmpp-admin.svg)](http://hits.dwyl.io/itning/tmpp-admin)
+[![HitCount](http://hits.dwyl.com/itning/tmpp-admin.svg)](http://hits.dwyl.com/itning/tmpp-admin)
 [![language](https://img.shields.io/badge/language-JAVA-green.svg)](https://github.com/itning/tmpp-admin)
 
 ![](https://raw.githubusercontent.com/itning/tmpp-admin/master/pic/logoin.png)
